@@ -91,6 +91,15 @@
 
       <tr>
         <td>
+          <label for="raise-if-started">Switch to application if it's already running</label>
+        </td>
+        <td>
+          <b-form-checkbox id="raise-if-started" v-model="raise_if_started"></b-form-checkbox>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
           <label for="grab_mouse_pointer">Don't hide after losing mouse focus</label>
         </td>
         <td>
@@ -219,6 +228,7 @@ export default {
       'disable_window_shadow',
       'grab_mouse_pointer',
       'jump_keys',
+      'raise_if_started',
       'render_on_screen',
       'show_indicator_icon',
       'show_recent_apps',

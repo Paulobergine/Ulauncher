@@ -12,7 +12,6 @@ from ulauncher.utils.launch_detached import launch_detached
 
 logger = logging.getLogger(__name__)
 settings = Settings.get_instance()
-raise_if_started = True
 
 
 def launch_app(app_id):
@@ -21,7 +20,7 @@ def launch_app(app_id):
     # strip field codes %f, %F, %u, %U, etc
     app_exec = re.sub(r'\%[uUfFdDnNickvm]', '', app.get_commandline()).strip()
     startup_class = app.get_string('StartupWMClass')
-    if raise_if_started and (startup_class or " " not in app_exec):
+    if settings.get_property('raise-if-started') and (startup_class or " " not in app_exec):
         raise_cmd = ['wmctrl', '-xa', startup_class or basename(app.get_executable())]
         with subprocess.Popen(raise_cmd) as proc:
             proc.communicate()
